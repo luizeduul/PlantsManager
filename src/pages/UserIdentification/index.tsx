@@ -19,7 +19,7 @@ import {
   ViewHeader,
 } from "./styles";
 
-function UserIdentification() {
+const UserIdentification: React.FC = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const [name, setName] = useState<string>("");
