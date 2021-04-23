@@ -4,7 +4,6 @@ import fonts from '../../styles/fonts';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.green,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 16,

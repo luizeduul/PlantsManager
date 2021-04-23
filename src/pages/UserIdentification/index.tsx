@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Keyboard, Platform } from "react-native";
+import { Alert, Keyboard, Platform } from "react-native";
 import Button from "../../components/Button";
 import colors from "../../styles/colors";
 
@@ -40,8 +41,19 @@ const UserIdentification: React.FC = () => {
     setName(value);
   }
 
-  function handleSubmit() {
-    navigation.navigate("Confirmation");
+  async function handleSubmit() {
+    try{
+      await AsyncStorage.setItem('@plantmanager:user', name);
+      navigation.navigate('Confirmation', {
+        title: 'Prontinho',
+        subtitle: 'Agora vamos começar a cuidar das suas plantinhas com muito cuidado',
+        buttonTitle: 'Começar',
+        icon: 'smile',
+        nextScreen: 'PlantSelect'
+      });
+    }catch(err){
+      Alert.alert('Não foi possível salvar seu nome 😥!!');
+    }
   }
 
   return (
@@ -64,11 +76,21 @@ const UserIdentification: React.FC = () => {
                 onChangeText={handleInputChange}
               />
               <ViewFooter>
-                <Button
-                  onPress={handleSubmit}
-                  title="Confirmar"
-                  activeOpacity={0.8}
-                />
+                {name ? (
+                  <Button
+                    onPress={handleSubmit}
+                    title="Confirmar"
+                    activeOpacity={0.8}
+                    color={colors.green}
+                  />
+                ) : (
+                  <Button
+                    title="Confirmar"
+                    activeOpacity={0.8}
+                    color={colors.gray}
+                    disabled
+                  />
+                )}
               </ViewFooter>
             </ViewForm>
           </Content>
@@ -76,6 +98,6 @@ const UserIdentification: React.FC = () => {
       </KeyboardAdvoid>
     </Container>
   );
-}
+};
 
 export default UserIdentification;

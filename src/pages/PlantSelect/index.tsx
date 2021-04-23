@@ -1,38 +1,27 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { FlatList, View, ActivityIndicator } from "react-native";
+import { FlatList, View } from "react-native";
+import { useNavigation } from "@react-navigation/core";
+
+import { PlantProps } from "../../libs/Storage";
+import api from "../../services/api";
 
 import EnvironmentButton from "../../components/EnvironmentButton";
 import Header from "../../components/Header";
 import PlantCardPrimary from "../../components/PlantCardPrimary";
 import Load from "../../components/Load";
 
-import api from "../../services/api";
-
 import {
   Container,
   TitleText,
   SubtitleText,
   ViewHeader,
+  Loading,
   styles,
 } from "./styles";
-import colors from "../../styles/colors";
 
 interface EnvironmentProps {
   key: string;
   title: string;
-}
-
-interface PlantProps {
-  id: string;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: [string];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  };
 }
 
 const PlantSelect: React.FC = () => {
@@ -45,7 +34,12 @@ const PlantSelect: React.FC = () => {
 
   const [page, setPage] = useState(1);
   const [loadingMore, setloadingMore] = useState(false);
-  const [loadedAll, setLoadedAll] = useState(false);
+
+  const navigation = useNavigation();
+
+  const handlePlantSelect = useCallback((plant: PlantProps) => {
+    navigation.navigate("PlantSave", { plant });
+  }, []);
 
   const handleEnvironmentSelected = useCallback((environment: string) => {
     setEnvironmentSelected(environment);
@@ -102,7 +96,7 @@ const PlantSelect: React.FC = () => {
 
   useEffect(() => {
     fetchPlants();
-  }, []);
+  }, [filteredPlants]);
 
   if (loading) return <Load />;
   return (
@@ -115,6 +109,7 @@ const PlantSelect: React.FC = () => {
       <View>
         <FlatList
           data={environments}
+          keyExtractor={(item) => String(item.key)}
           renderItem={({ item }) => (
             <EnvironmentButton
               title={item.title}
@@ -130,14 +125,20 @@ const PlantSelect: React.FC = () => {
       <View style={styles.plants}>
         <FlatList
           data={filteredPlants}
-          renderItem={({ item }) => <PlantCardPrimary data={item} />}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <PlantCardPrimary
+              data={item}
+              onPress={() => handlePlantSelect(item)}
+            />
+          )}
           numColumns={2}
           showsHorizontalScrollIndicator={false}
           onEndReachedThreshold={0.1}
           onEndReached={({ distanceFromEnd }) =>
             handleFetchMore(distanceFromEnd)
           }
-          ListFooterComponent={<ActivityIndicator color={colors.green} />}
+          ListFooterComponent={loadingMore ? <Loading /> : null}
         />
       </View>
     </Container>

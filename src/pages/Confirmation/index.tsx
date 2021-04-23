@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { useNavigation } from "@react-navigation/core";
+import { useNavigation, useRoute } from "@react-navigation/core";
 import Button from "../../components/Button";
 
 import {
@@ -10,22 +10,50 @@ import {
   SubTitleText,
   ViewFooter,
 } from "./styles";
+import colors from "../../styles/colors";
+
+interface Params {
+  title: string;
+  subtitle: string;
+  buttonTitle: string;
+  icon: "hug" | "smile";
+  nextScreen: string;
+}
+
+const emojis = {
+  smile: "😄",
+  hug: "🤗",
+};
 
 const Confirmation: React.FC = () => {
   const navigation = useNavigation();
-  const handleNavigateToPlantSelect = useCallback(() => {
-    navigation.navigate('PlantSelect');
-  }, []);
+  const routes = useRoute();
+
+  const {
+    title,
+    subtitle,
+    buttonTitle,
+    icon,
+    nextScreen,
+  } = routes.params as Params;
+
+  function handleMoveOn() {
+    navigation.navigate(nextScreen);
+  };
   return (
     <Container>
       <Content>
-        <Emoji>😄</Emoji>
-        <TitleText>Prontinho</TitleText>
+        <Emoji>{emojis[icon]}</Emoji>
+        <TitleText>{title}</TitleText>
         <SubTitleText>
-          Agora vamos começar a cuidar das suas plantinhas com muito cuidado.
+          {subtitle}
         </SubTitleText>
         <ViewFooter>
-          <Button onPress={handleNavigateToPlantSelect}title="Começar" />
+          <Button
+            onPress={handleMoveOn}
+            title={buttonTitle}
+            color={colors.green}
+          />
         </ViewFooter>
       </Content>
     </Container>
