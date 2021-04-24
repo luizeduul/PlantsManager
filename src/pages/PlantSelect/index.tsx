@@ -37,11 +37,11 @@ const PlantSelect: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const handlePlantSelect = useCallback((plant: PlantProps) => {
+  function handlePlantSelect(plant: PlantProps) {
     navigation.navigate("PlantSave", { plant });
-  }, []);
+  };
 
-  const handleEnvironmentSelected = useCallback((environment: string) => {
+  function handleEnvironmentSelected(environment: string){
     setEnvironmentSelected(environment);
 
     if (environment === "all") return setFilteredPlants(plants);
@@ -50,9 +50,9 @@ const PlantSelect: React.FC = () => {
       plant.environments.includes(environment)
     );
     setFilteredPlants(filtered);
-  }, []);
+  };
 
-  const fetchEnvironment = useCallback(async () => {
+  async function fetchEnvironment(){
     const { data } = await api.get("plants_environments?_sort=title&order=asc");
 
     setEnvironments([
@@ -62,15 +62,15 @@ const PlantSelect: React.FC = () => {
       },
       ...data,
     ]);
-  }, []);
+  };
 
   useEffect(() => {
     fetchEnvironment();
   }, []);
 
-  const fetchPlants = useCallback(async () => {
+  async function fetchPlants(){
     const { data } = await api.get(
-      `plants?_sort=name&order=asc&_page=${page}&_limit=8`
+      `plants?_sort=name&order=asc&_page=${page}`
     );
 
     if (!data) return setLoading(true);
@@ -84,19 +84,19 @@ const PlantSelect: React.FC = () => {
     }
     setLoading(false);
     setloadingMore(false);
-  }, []);
+  };
 
-  const handleFetchMore = useCallback((distance: number) => {
+  function handleFetchMore(distance: number){
     if (distance < 1) return;
 
     setloadingMore(true);
     setPage((oldValue) => oldValue + 1);
     fetchPlants();
-  }, []);
+  };
 
   useEffect(() => {
     fetchPlants();
-  }, [filteredPlants]);
+  }, []);
 
   if (loading) return <Load />;
   return (

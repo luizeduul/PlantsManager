@@ -3,6 +3,14 @@ import { getBottomSpace } from "react-native-iphone-x-helper";
 import colors from "../../styles/colors";
 import fonts from "../../styles/fonts";
 
+export const Scroll = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: colors.shape,
+  },
+}))``;
+
 export const Container = styled.View`
   flex: 1;
   justify-content: space-between;
@@ -59,7 +67,7 @@ export const TipText = styled.Text`
   font-family: ${fonts.text};
   font-size: 17px;
   text-align: justify;
-  color: ${colors.blue}
+  color: ${colors.blue};
 `;
 
 export const AlertLabelText = styled.Text`

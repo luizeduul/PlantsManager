@@ -1,11 +1,11 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { SvgFromUri } from "react-native-svg";
 import { useNavigation, useRoute } from "@react-navigation/core";
 import { Alert, Platform } from "react-native";
 import { isBefore, format } from "date-fns";
 import DateTimePicker, { Event } from "@react-native-community/datetimepicker";
 
-import {  PlantProps, savePlant } from "../../libs/Storage";
+import { PlantProps, savePlant } from "../../libs/Storage";
 
 import imgWaterdrop from "../../assets/waterdrop.png";
 import Button from "../../components/Button";
@@ -22,6 +22,7 @@ import {
   PlantInfo,
   ButtonChangeTime,
   ButtonChangeTimeText,
+  Scroll,
 } from "./styles";
 
 interface Params {
@@ -55,63 +56,66 @@ const PlantSave: React.FC = () => {
     setShowDatePicker((oldState) => !oldState);
   }
 
-  async function handleSave(){
-    try{
+  async function handleSave() {
+    try {
       await savePlant({
         ...plant,
         dateTimeNotification: selectedDateTime,
       });
-      navigation.navigate('Confirmation', {
-        title: 'Tudo certo',
-        subtitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha',
-        buttonTitle: 'Muito obrigado',
-        icon: 'hug',
-        nextScreen: 'MyPlants'
+      navigation.navigate("Confirmation", {
+        title: "Tudo certo",
+        subtitle:
+          "Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha",
+        buttonTitle: "Muito obrigado",
+        icon: "hug",
+        nextScreen: "MyPlants",
       });
-    }catch(err){
-      Alert.alert('Não foi possível salvar 😥!!', err);
+    } catch (err) {
+      Alert.alert("Não foi possível salvar 😥!!", err);
     }
   }
 
   return (
-    <Container>
-      <PlantInfo>
-        <SvgFromUri uri={plant.photo} width={150} height={150} />
-        <PlantNameText>{plant.name}</PlantNameText>
-        <PlantAboutText>{plant.about}</PlantAboutText>
-      </PlantInfo>
-      <Controller>
-        <TipContainer>
-          <TipImage source={imgWaterdrop} />
-          <TipText>{plant.water_tips}</TipText>
-        </TipContainer>
-        <AlertLabelText>
-          Escolha o melhor horário para ser lembrado:
-        </AlertLabelText>
-        {showDatePicker && (
-          <DateTimePicker
-            value={selectedDateTime}
-            mode="time"
-            display="spinner"
-            onChange={handleChangeTime}
+    <Scroll>
+      <Container>
+        <PlantInfo>
+          <SvgFromUri uri={plant.photo} width={150} height={150} />
+          <PlantNameText>{plant.name}</PlantNameText>
+          <PlantAboutText>{plant.about}</PlantAboutText>
+        </PlantInfo>
+        <Controller>
+          <TipContainer>
+            <TipImage source={imgWaterdrop} />
+            <TipText>{plant.water_tips}</TipText>
+          </TipContainer>
+          <AlertLabelText>
+            Escolha o melhor horário para ser lembrado:
+          </AlertLabelText>
+          {showDatePicker && (
+            <DateTimePicker
+              value={selectedDateTime}
+              mode="time"
+              display="spinner"
+              onChange={handleChangeTime}
+            />
+          )}
+
+          {Platform.OS === "android" && (
+            <ButtonChangeTime onPress={handleOpenDateTimePickerForAndroid}>
+              <ButtonChangeTimeText>
+                {`Mudar ${format(selectedDateTime, "HH:mm")}`}
+              </ButtonChangeTimeText>
+            </ButtonChangeTime>
+          )}
+
+          <Button
+            title="Cadastrar planta"
+            color={colors.green}
+            onPress={handleSave}
           />
-        )}
-
-        {Platform.OS === "android" && (
-          <ButtonChangeTime onPress={handleOpenDateTimePickerForAndroid}>
-            <ButtonChangeTimeText>
-              {`Mudar ${format(selectedDateTime, "HH:mm")}`}
-            </ButtonChangeTimeText>
-          </ButtonChangeTime>
-        )}
-
-        <Button
-          title="Cadastrar planta"
-          color={colors.green}
-          onPress={handleSave}
-        />
-      </Controller>
-    </Container>
+        </Controller>
+      </Container>
+    </Scroll>
   );
 };
 

@@ -16,7 +16,6 @@ export const ViewWrapper = styled.View`
 
 export const TitleText = styled.Text`
   font-size: 28px;
-  font-weight: bold;
   font-family: ${fonts.heading};
   text-align: center;
   color: ${colors.heading};

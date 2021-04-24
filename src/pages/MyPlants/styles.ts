@@ -1,6 +1,8 @@
-import styled from 'styled-components/native';
-import colors from '../../styles/colors';
-import fonts from '../../styles/fonts';
+import styled from "styled-components/native";
+import {StyleSheet} from "react-native";
+import colors from "../../styles/colors";
+import fonts from "../../styles/fonts";
+
 
 export const Container = styled.View`
   flex: 1;
@@ -44,4 +46,3 @@ export const PlantTitle = styled.Text`
   color: ${colors.heading};
   margin: 20px 0;
 `;
-
