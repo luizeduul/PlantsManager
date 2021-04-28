@@ -20,7 +20,7 @@
 
 ## Descrição
 
-<p>A aplicação plants, tem por objetivo lembrar o usuário de molhar suas plantas. O usuário deverá cadastrar o horário em que pretente lembrar de molhar a planta, então o app irá alertar o usuário com uma notificação para ele lembrar molhar a planta.</p>
+<p>A aplicação plants manager, tem por objetivo lembrar o usuário de molhar suas plantas. O usuário deverá cadastrar o horário em que pretente lembrar de molhar a planta, então o app irá alertar o usuário com uma notificação para ele lembrar molhar a planta.</p>
 
 ---
 
