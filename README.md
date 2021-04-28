@@ -27,7 +27,6 @@
 ## Como utilizar
 
 <p>Faça um clone desse projeto em sua máquina</p>
-<p>Abrir as pastas abaixo e fazer as instalações de acordo com as instruções que estão nos arquivos readme das pastas abaixo</p>
 
 <p>Primeiramente você vai precisar instalar as dependencias do projeto</p>
 <p>Abra a pasta do projeto Plant Manager no terminal</p>
