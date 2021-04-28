@@ -31,7 +31,13 @@
 <p>Primeiramente você vai precisar instalar as dependencias do projeto</p>
 <p>Abra a pasta do projeto Plant Manager no terminal</p>
 
-<p>Faça a instalação das dependencias do projeto. Com yarn ou npm. <strong> yarn install</strong> ou <strong> npm install</strong></p>
+<p>Faça a instalação das dependencias do projeto. Com yarn ou npm.</p>
+
+`yarn install` 
+
+<p>ou</p>
+
+`npm install`
 
 <p>Para rodar seu app, você precisará baixar o app do Expo na Playstore ou Apple store.</p>
 
