@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
-import styled from "styled-components/native";
-import colors from "../../styles/colors";
-import fonts from "../../styles/fonts";
+import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
+import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -28,7 +28,7 @@ export const SubtitleText = styled.Text`
 `;
 
 export const Loading = styled.ActivityIndicator.attrs({
-  size: "small",
+  size: 'small',
   color: colors.green,
 })`
   margin: 30px 0;
@@ -37,7 +37,7 @@ export const Loading = styled.ActivityIndicator.attrs({
 export const styles = StyleSheet.create({
   environmentList: {
     height: 40,
-    justifyContent: "center",
+    justifyContent: 'center',
     paddingBottom: 5,
     marginLeft: 32,
     marginVertical: 32,

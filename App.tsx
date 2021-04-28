@@ -1,20 +1,17 @@
 import 'react-native-gesture-handler';
-import React, { useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import * as Notifications from 'expo-notifications';
-import Routes from './src/Navigation';
-
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import AppLoading from 'expo-app-loading';
 import {
   Jost_400Regular,
   Jost_600SemiBold,
   useFonts,
-} from "@expo-google-fonts/jost";
-import AppLoading from "expo-app-loading";
-import { PlantProps } from './src/libs/Storage';
+} from '@expo-google-fonts/jost';
 
+import Routes from './src/Navigation';
 
-export default function App() {
-  let [fontsLoaded] = useFonts({
+const App: React.FC = () => {
+  const [fontsLoaded] = useFonts({
     Jost_400Regular,
     Jost_600SemiBold,
   });
@@ -24,8 +21,10 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="dark"/>
+      <StatusBar style="dark" />
       <Routes />
     </>
   );
-}
+};
+
+export default App;

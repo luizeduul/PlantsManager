@@ -1,12 +1,12 @@
-import styled from "styled-components/native";
-import { getBottomSpace } from "react-native-iphone-x-helper";
-import colors from "../../styles/colors";
-import fonts from "../../styles/fonts";
+import styled from 'styled-components/native';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
+import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
 
 export const Scroll = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
     flex: 1,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     backgroundColor: colors.shape,
   },
 }))``;

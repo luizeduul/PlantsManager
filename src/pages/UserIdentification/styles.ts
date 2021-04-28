@@ -45,7 +45,6 @@ export const Input = styled.TextInput`
   margin-top: 50px;
   padding: 10px;
   text-align: center;
-
 `;
 
 export const TextTitle = styled.Text`

@@ -24,7 +24,7 @@ export const UserNameText = styled.Text`
   font-family: ${fonts.heading};
   color: ${colors.heading};
   line-height: 40px;
-`
+`;
 
 export const ProfileImage = styled.Image`
   width: 70px;

@@ -1,5 +1,5 @@
-import {StyleSheet} from "react-native";
-import colors from "../../styles/colors";
+import { StyleSheet } from 'react-native';
+import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
 const styles = StyleSheet.create({
@@ -9,12 +9,12 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     marginRight: 10,
     height: 56,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   textButton: {
     color: colors.white,
     fontFamily: fonts.heading,
-  }
+  },
 });
 
 export default styles;

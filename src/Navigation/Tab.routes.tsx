@@ -1,11 +1,12 @@
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialIcons } from "@expo/vector-icons";
-import PlantSelect from "../pages/PlantSelect";
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
+import PlantSelect from '../pages/PlantSelect';
 
-import colors from "../styles/colors";
-import MyPlants from "../pages/MyPlants";
-import { Platform } from "react-native";
+import colors from '../styles/colors';
+import MyPlants from '../pages/MyPlants';
+
 const { Navigator, Screen } = createBottomTabNavigator();
 const AuthTabRoutes: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const AuthTabRoutes: React.FC = () => {
       tabBarOptions={{
         activeTintColor: colors.green,
         inactiveTintColor: colors.heading,
-        labelPosition: "beside-icon",
+        labelPosition: 'beside-icon',
         style: {
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
           height: 88,

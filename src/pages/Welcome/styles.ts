@@ -1,7 +1,7 @@
-import { Dimensions } from "react-native";
-import styled from "styled-components/native";
-import colors from "../../styles/colors";
-import fonts from "../../styles/fonts";
+import { Dimensions } from 'react-native';
+import styled from 'styled-components/native';
+import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -31,7 +31,7 @@ export const SubtitleText = styled.Text`
 `;
 
 export const Image = styled.Image`
-  height: ${Dimensions.get("window").width * 0.7}px;
+  height: ${Dimensions.get('window').width * 0.7}px;
 `;
 
 export const ButtonNext = styled.TouchableOpacity`

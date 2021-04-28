@@ -4,21 +4,20 @@ import fonts from '../../styles/fonts';
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     maxWidth: '45%',
     backgroundColor: colors.shape,
     borderRadius: 20,
     paddingVertical: 10,
     alignItems: 'center',
-    margin: 10
+    margin: 10,
   },
 
   text: {
     color: colors.green_dark,
     fontFamily: fonts.heading,
-    marginVertical: 16
+    marginVertical: 16,
   },
-
 });
 
 export default styles;

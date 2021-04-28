@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
-import { useNavigation } from "@react-navigation/core";
-import { Feather } from "@expo/vector-icons";
+import React from 'react';
+import { useNavigation } from '@react-navigation/core';
+import { Feather } from '@expo/vector-icons';
 
-import wateringImg from "../../assets/watering.png";
+import wateringImg from '../../assets/watering.png';
 
 import {
   Container,
@@ -11,21 +11,21 @@ import {
   SubtitleText,
   ButtonNext,
   ViewWrapper,
-} from "./styles";
+} from './styles';
 
 const Welcome: React.FC = () => {
   const navigation = useNavigation();
 
-  const handleStart = useCallback(() => {
+  function handleStart(): void {
     navigation.navigate('UserIdentification');
-  }, []);
+  }
 
   return (
     <Container>
       <ViewWrapper>
         <TitleText>
-          Gerencie {"\n"}
-          suas plantas de{"\n"}
+          Gerencie {'\n'}
+          suas plantas de{'\n'}
           forma fácil.
         </TitleText>
         <Image source={wateringImg} resizeMode="contain" />

@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
-import { useNavigation, useRoute } from "@react-navigation/core";
-import Button from "../../components/Button";
+import React from 'react';
+import { useNavigation, useRoute } from '@react-navigation/core';
+import Button from '../../components/Button';
 
 import {
   Container,
@@ -9,20 +9,20 @@ import {
   TitleText,
   SubTitleText,
   ViewFooter,
-} from "./styles";
-import colors from "../../styles/colors";
+} from './styles';
+import colors from '../../styles/colors';
 
 interface Params {
   title: string;
   subtitle: string;
   buttonTitle: string;
-  icon: "hug" | "smile";
+  icon: 'hug' | 'smile';
   nextScreen: string;
 }
 
 const emojis = {
-  smile: "😄",
-  hug: "🤗",
+  smile: '😄',
+  hug: '🤗',
 };
 
 const Confirmation: React.FC = () => {
@@ -37,17 +37,16 @@ const Confirmation: React.FC = () => {
     nextScreen,
   } = routes.params as Params;
 
-  function handleMoveOn() {
+  function handleMoveOn(): void {
     navigation.navigate(nextScreen);
-  };
+  }
+
   return (
     <Container>
       <Content>
         <Emoji>{emojis[icon]}</Emoji>
         <TitleText>{title}</TitleText>
-        <SubTitleText>
-          {subtitle}
-        </SubTitleText>
+        <SubTitleText>{subtitle}</SubTitleText>
         <ViewFooter>
           <Button
             onPress={handleMoveOn}

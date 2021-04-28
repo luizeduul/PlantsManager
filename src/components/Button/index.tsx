@@ -1,15 +1,14 @@
-import React, { ReactNode } from "react";
-import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import React from 'react';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
-import styles from "./styles";
+import styles from './styles';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
   color: string;
-  children?: ReactNode;
 }
 
-const Button = ({ children, color, title, ...rest }: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({ color, title, ...rest }) => {
   return (
     <TouchableOpacity
       {...rest}

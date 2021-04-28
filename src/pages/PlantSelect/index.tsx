@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { FlatList, View } from "react-native";
-import { useNavigation } from "@react-navigation/core";
+import React, { useEffect, useState } from 'react';
+import { FlatList, View } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
-import { PlantProps } from "../../libs/Storage";
-import api from "../../services/api";
+import { PlantProps } from '../../libs/Storage';
+import api from '../../services/api';
 
-import EnvironmentButton from "../../components/EnvironmentButton";
-import Header from "../../components/Header";
-import PlantCardPrimary from "../../components/PlantCardPrimary";
-import Load from "../../components/Load";
+import EnvironmentButton from '../../components/EnvironmentButton';
+import Header from '../../components/Header';
+import PlantCardPrimary from '../../components/PlantCardPrimary';
+import Load from '../../components/Load';
 
 import {
   Container,
@@ -17,7 +17,7 @@ import {
   ViewHeader,
   Loading,
   styles,
-} from "./styles";
+} from './styles';
 
 interface EnvironmentProps {
   key: string;
@@ -26,7 +26,7 @@ interface EnvironmentProps {
 
 const PlantSelect: React.FC = () => {
   const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
-  const [environmentSelected, setEnvironmentSelected] = useState("all");
+  const [environmentSelected, setEnvironmentSelected] = useState('all');
 
   const [plants, setPlants] = useState<PlantProps[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
@@ -37,41 +37,39 @@ const PlantSelect: React.FC = () => {
 
   const navigation = useNavigation();
 
-  function handlePlantSelect(plant: PlantProps) {
-    navigation.navigate("PlantSave", { plant });
-  };
+  function handlePlantSelect(plant: PlantProps): void {
+    navigation.navigate('PlantSave', { plant });
+  }
 
-  function handleEnvironmentSelected(environment: string){
+  function handleEnvironmentSelected(environment: string): void {
     setEnvironmentSelected(environment);
 
-    if (environment === "all") return setFilteredPlants(plants);
+    if (environment === 'all') return setFilteredPlants(plants);
 
     const filtered = plants.filter((plant) =>
       plant.environments.includes(environment)
     );
     setFilteredPlants(filtered);
-  };
+  }
 
-  async function fetchEnvironment(){
-    const { data } = await api.get("plants_environments?_sort=title&order=asc");
+  async function fetchEnvironment(): Promise<void> {
+    const { data } = await api.get('plants_environments?_sort=title&order=asc');
 
     setEnvironments([
       {
-        key: "all",
-        title: "Todos",
+        key: 'all',
+        title: 'Todos',
       },
       ...data,
     ]);
-  };
+  }
 
   useEffect(() => {
     fetchEnvironment();
   }, []);
 
-  async function fetchPlants(){
-    const { data } = await api.get(
-      `plants?_sort=name&order=asc&_page=${page}`
-    );
+  async function fetchPlants(): Promise<void> {
+    const { data } = await api.get(`plants?_sort=name&order=asc&_page=${page}`);
 
     if (!data) return setLoading(true);
 
@@ -84,19 +82,19 @@ const PlantSelect: React.FC = () => {
     }
     setLoading(false);
     setloadingMore(false);
-  };
+  }
 
-  function handleFetchMore(distance: number){
+  useEffect(() => {
+    fetchPlants();
+  }, []);
+
+  function handleFetchMore(distance: number): void {
     if (distance < 1) return;
 
     setloadingMore(true);
     setPage((oldValue) => oldValue + 1);
     fetchPlants();
-  };
-
-  useEffect(() => {
-    fetchPlants();
-  }, []);
+  }
 
   if (loading) return <Load />;
   return (

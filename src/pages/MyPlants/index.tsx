@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Alert, FlatList } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { Alert, FlatList } from 'react-native';
 
-import { formatDistance } from "date-fns";
-import { ptBR } from "date-fns/locale";
+/* eslint-ignore /*
+/* @ts-ignore */
+import { formatDistance, ptBR } from 'date-fns';
 
-import { PlantProps, loadPlants, removePlant } from "../../libs/Storage";
+import { PlantProps, loadPlants, removePlant } from '../../libs/Storage';
 
-import Header from "../../components/Header";
-import PlantCardSecondary from "../../components/PlantCardSecondary";
+import Header from '../../components/Header';
+import PlantCardSecondary from '../../components/PlantCardSecondary';
+import Load from '../../components/Load';
 
-import imgWater from "../../assets/waterdrop.png";
+import imgWater from '../../assets/waterdrop.png';
 
 import {
   Container,
@@ -18,22 +20,21 @@ import {
   SpotlightImage,
   PlantsView,
   PlantTitle,
-} from "./styles";
-import Load from "../../components/Load";
+} from './styles';
 
 const MyPlants: React.FC = () => {
   const [myPlants, setMyPlants] = useState<PlantProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [nextWaterd, setNextWaterd] = useState<string>();
 
-  function handleRemove(plant: PlantProps) {
-    Alert.alert("Remover", `Deseja remover a ${plant.name} ?`, [
+  function handleRemove(plant: PlantProps): void {
+    Alert.alert('Remover', `Deseja remover a ${plant.name} ?`, [
       {
-        text: "Não 🙏",
-        style: "cancel",
+        text: 'Não 🙏',
+        style: 'cancel',
       },
       {
-        text: "Sim 😢",
+        text: 'Sim 😢',
         onPress: async () => {
           try {
             await removePlant(plant.id);
@@ -50,7 +51,7 @@ const MyPlants: React.FC = () => {
   }
 
   useEffect(() => {
-    async function loadStorageData() {
+    async function loadStorageData(): Promise<void> {
       const plantsStoraged = await loadPlants();
 
       const nextTime = formatDistance(

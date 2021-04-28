@@ -1,8 +1,8 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import StackRoutes from "./Stack.routes";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import StackRoutes from './Stack.routes';
 
-const Routes = () => {
+const Routes: React.FC = () => {
   return (
     <NavigationContainer>
       <StackRoutes />

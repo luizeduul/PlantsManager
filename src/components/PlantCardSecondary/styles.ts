@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 5,
-    backgroundColor: colors.shape
+    backgroundColor: colors.shape,
   },
 
   title: {
@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
     fontFamily: fonts.heading,
     fontSize: 17,
     marginLeft: 10,
-    color: colors.heading
+    color: colors.heading,
   },
   details: {
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   timeLabel: {
     fontSize: 16,
@@ -47,8 +47,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     right: 20,
     paddingLeft: 15,
-  }
-
+  },
 });
 
 export default styles;

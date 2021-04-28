@@ -1,10 +1,10 @@
-import React from "react";
-import { View } from "react-native";
-import LotieView from "lottie-react-native";
+import React from 'react';
+import { View } from 'react-native';
+import LotieView from 'lottie-react-native';
 
-import loadAnimation from "../../assets/load.json";
+import loadAnimation from '../../assets/load.json';
 
-import styles from "./styles";
+import styles from './styles';
 
 const Load: React.FC = () => {
   return (
