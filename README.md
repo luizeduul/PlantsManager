@@ -1,5 +1,6 @@
+
 <h1 align="center">
-  <img src="https://ik.imagekit.io/8qmbx6p1dq/Plant_Manager/Logo_B6avEF9i3.png" alt="Logo PlantManager" width="250px">
+  <img src="https://ik.imagekit.io/8qmbx6p1dq/Plant_Manager/Logo_HX9cLuguz.png" alt="Logo PlantManager" width="250px">
 </h1>
 
 <p align="center">
