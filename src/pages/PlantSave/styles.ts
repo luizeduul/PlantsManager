@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
@@ -42,7 +41,7 @@ export const PlantAboutText = styled.Text`
 
 export const Controller = styled.View`
   background-color: ${colors.white};
-  padding: 20px 20px ${getBottomSpace() || `20px`} 20px;
+  padding: 20px 20px 20px 20px;
 `;
 
 export const TipContainer = styled.View`
